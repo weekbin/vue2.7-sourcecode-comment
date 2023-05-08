@@ -1,0 +1,27 @@
+<script src="../../dist/vue.js"></script>
+
+<div id="app"></div>
+
+<script>
+  new Vue({
+    data() {
+      return {
+        ls: ['1', '2', '3']
+      }
+    },
+    render(h) {
+      return h(
+        'div',
+        {
+          on: {
+            click: () => {
+              console.log('change')
+              this.ls = ['2', '4']
+            }
+          }
+        },
+        h('p', 'hello')
+      )
+    }
+  }).$mount('#app')
+</script>

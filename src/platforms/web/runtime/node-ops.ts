@@ -6,6 +6,9 @@ export function createElement(tagName: string, vnode: VNode): Element {
   if (tagName !== 'select') {
     return elm
   }
+  /**
+   * If element is select, try to set multiple attribute.
+   */
   // false or null will remove the attribute but undefined will not
   if (
     vnode.data &&
@@ -18,6 +21,9 @@ export function createElement(tagName: string, vnode: VNode): Element {
 }
 
 export function createElementNS(namespace: string, tagName: string): Element {
+  /**
+   * details: https://www.w3.org/TR/REC-xml-names/
+   */
   return document.createElementNS(namespaceMap[namespace], tagName)
 }
 
@@ -58,6 +64,12 @@ export function tagName(node: Element): string {
 }
 
 export function setTextContent(node: Node, text: string) {
+  /**
+   * reference: https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+   * 1. If the node is a document or doctype, textContent returns null.
+   * 2. If the node is a text node or comment, returns Node.nodeValue.
+   * 3. For other node types, returns the concatenation of the textContent of every child node.
+   */
   node.textContent = text
 }
 
